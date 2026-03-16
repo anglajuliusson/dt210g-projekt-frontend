@@ -4,11 +4,20 @@
   box-sizing: border-box;
 }
 html, body {
+  height: 100%;
   width: 100%;
   overflow-x: hidden;
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
 /* Header */
 /* Tablet och mindre */
 @media (max-width: 900px) {
