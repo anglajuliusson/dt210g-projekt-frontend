@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* Header */
+/* Tablet och mindre */
+@media (max-width: 900px) {
+  .header-container {
+    flex-wrap: wrap !important;
+    align-items: center !important;
+  }
+  .header-container h1 {
+    flex: 1 1 auto;
+    margin: 0;
+  }
+  .header-links {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .header-search {
+    order: 3;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0.5rem;
+  }
+}
+/* Mobil */
+@media (max-width: 600px) {
+  .header-search {
+    flex-direction: column !important;
+  }
+  .header-search button {
+    width: 100% !important;
+  }
+}
+
+/* Footer */
+@media(max-width: 600px) {
+  footer p {
+    font-size: small;
+  }
+}
