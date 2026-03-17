@@ -6,4 +6,5 @@ export interface Review {
     rating: number;
     review_text: string;
     created_at: string;
+    username: string
 };
