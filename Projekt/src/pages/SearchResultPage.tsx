@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { searchBooks } from "../services/books";
-import type { Book } from "../types/book.ts";
+import type { Book } from "../interfaces/book.ts";
 import type { CSSProperties } from "react";
 
 const mainStyle = {

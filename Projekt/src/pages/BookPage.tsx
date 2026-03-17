@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { useParams } from "react-router-dom";
-import type { Book } from "../types/book.ts";
+import type { Book } from "../interfaces/book.ts";
 
 const mainStyle = {
     width: "100%",
