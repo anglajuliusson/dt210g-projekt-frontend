@@ -57,3 +57,20 @@ main {
     font-size: small;
   }
 }
+
+/* SearchResultPage */
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+.book-card-link:hover {
+  background-color: #3f5b41;
+}
+@media (max-width: 600px) {
+  .search-results-title {
+    font-size: 1.6rem;
+  }
+  .search-results-page {
+    padding: 1.5rem 0.75rem 2rem;
+  }
+}
