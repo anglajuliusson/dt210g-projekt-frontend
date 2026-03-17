@@ -72,5 +72,6 @@ main {
   }
   .search-results-page {
     padding: 1.5rem 0.75rem 2rem;
+    color: rgb(174, 16, 48);
   }
 }
