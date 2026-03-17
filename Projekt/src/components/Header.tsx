@@ -37,6 +37,12 @@ const linkStyle = {
 }
 
 function Header() {
+    const token = localStorage.getItem("token");
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    };
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -68,7 +74,17 @@ function Header() {
         </form>
 
         <div className="header-links">
-          <Link to="/login" style={linkStyle}>Logga in</Link>
+            {/* Olika innehåll beroende på inloggad eller inte */}
+            {!token ?  (
+                // Om ej inloggad visas denna
+                <Link to="/login" style={linkStyle}>Logga in</Link>
+            ) : (
+                <>
+                {/* Om inloggad visas denna */}
+                <Link to="/admin" style={linkStyle}>Mina sidor</Link>
+                <button onClick={handleLogout} style={{...buttonStyle, marginLeft: "1em"}}>Logga ut</button>
+                </>
+            )}
         </div>
       </div>
     </header>
