@@ -5,6 +5,7 @@ import SearchResultsPage from "./pages/SearchResultPage";
 import BookPage from "./pages/BookPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/book/:id" element={<BookPage />} />
         <Route path="/login" element={<LoginPage />}/>
+        <Route path="/register" element={<RegisterPage />}/>
       </Routes>
 
       <Footer />
