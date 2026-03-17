@@ -3,8 +3,9 @@ const homePageStyle = {
     margin: "60px auto",
     padding: "40px",
     textAlingn: "center",
-    backgroundColor: "#f8f8f8",
-    borderRadius: "10px"
+    backgroundColor: "#f8f6f1",
+    border: "1px solid #e4dfd4",
+    borderRadius: "12px"
 }
 const textStyle = {
     fontSize: "1.1rem",
