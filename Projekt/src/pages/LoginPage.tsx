@@ -101,7 +101,7 @@ function LoginPage() {
                     <button type="submit" style={{...buttonStyle, backgroundColor: "crimson", marginBottom: "1rem"}}>Logga in</button>
                 </form>
                 <button style={{...buttonStyle, backgroundColor: "rgb(174, 16, 48)"}}>
-                        <Link to="/register" style={{color: "white", textDecoration: "none"}}>Skapa konto</Link>
+                        <Link to="/register" style={{color: "white", textDecoration: "none"}}>Skapa användare</Link>
                 </button>
             </div>
         </main>
