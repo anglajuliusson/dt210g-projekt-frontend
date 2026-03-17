@@ -1,4 +1,4 @@
-import type { Book } from "../types/book.ts";
+import type { Book } from "../interfaces/book.ts";
 
 export async function searchBooks(query: string): Promise<Book[]> {
   const response = await fetch(
