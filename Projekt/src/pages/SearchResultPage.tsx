@@ -102,7 +102,7 @@ function SearchResultsPage() {
       <h2 style={titleStyle} className="search-results-title">Sökresultat för: {query}</h2>
 
       {loading && <p style={searchMessageStyle}>Laddar böcker...</p>}
-      {error && <p style={{color: "#a33333"}}>{error}</p>}
+      {error && <p style={{... searchMessageStyle, color: "#a33333"}}>{error}</p>}
 
       {!loading && !error && books.length === 0 && (
         <p style={searchMessageStyle}>Inga böcker hittades.</p>
