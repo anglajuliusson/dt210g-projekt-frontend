@@ -6,6 +6,8 @@ import BookPage from "./pages/BookPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import AdminPage from "./pages/AdminPage";
+import ProtectedRoute from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -18,6 +20,14 @@ function App() {
         <Route path="/book/:id" element={<BookPage />} />
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/register" element={<RegisterPage />}/>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       <Footer />
