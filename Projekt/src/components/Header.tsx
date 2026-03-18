@@ -81,7 +81,7 @@ function Header() {
             ) : (
                 <>
                 {/* Om inloggad visas denna */}
-                <Link to="/admin" style={linkStyle}>Mina sidor</Link>
+                <Link to="/admin" style={linkStyle}>Mina recensioner</Link>
                 <button onClick={handleLogout} style={{...buttonStyle, marginLeft: "1em"}}>Logga ut</button>
                 </>
             )}
