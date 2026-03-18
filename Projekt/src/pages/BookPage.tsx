@@ -246,7 +246,12 @@ function BookPage() {
                     src={info.imageLinks?.thumbnail || ""}
                     alt={info.title || "Bokomslag"}
                 />
-                <p style={descriptionStyle}>{info.description || "Ingen beskrivning tillgänglig."}</p>
+                <p
+                    style={descriptionStyle}
+                    dangerouslySetInnerHTML={{
+                        __html: info.description || "Ingen beskrivning tillgänglig."
+                    }}
+                ></p>
         </div>
 
         {/* Bokens recensioner */}
