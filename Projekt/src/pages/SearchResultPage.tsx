@@ -70,32 +70,38 @@ const bookCardLinkStyle = {
 }
 
 function SearchResultsPage() {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
+  const [searchParams] = useSearchParams(); // Hämtar query-parametrar från URL:en
+  const query = searchParams.get("q"); // Hämtar själva sökordet
 
-  const [books, setBooks] = useState<Book[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [books, setBooks] = useState<Book[]>([]); // State för att lagra böcker som hämtas från API
+  const [loading, setLoading] = useState(false); // State för laddningsstatus
+  const [error, setError] = useState(""); // State för felmeddelande
 
+  // Körs varje gång användaren gör en ny sökning och query ändras
   useEffect(() => {
+
+    // Funktion som hämtar böcker från API
     async function fetchBooks() {
-      if (!query) return;
+      if (!query) return; // Avbryt om inget sökord
 
       try {
+        // Starta laddning och nollställ eventuella fel
         setLoading(true);
         setError("");
 
+        // Anropa service-funktion som hämtar data från Google Books API
         const results = await searchBooks(query);
-        setBooks(results);
+        setBooks(results); // Spara resultatet i state
       } catch (err) {
         setError("Något gick fel vid hämtning av böcker.");
       } finally {
-        setLoading(false);
+        setLoading(false); // Stoppar laddnigsindikator oavsett resultat
       }
     }
 
+    // Anropa funktionen
     fetchBooks();
-  }, [query]);
+  }, [query]); // Körs om query ändras
 
   return (
     <main style={mainStyle} className="search-results-page">

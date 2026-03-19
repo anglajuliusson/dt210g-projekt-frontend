@@ -66,24 +66,28 @@ const buttonStyle: CSSProperties = {
 };
 
 function AdminPage() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token"); // Hämtar JWT-token från localStorage
 
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]); // State för att lagra användarens recensioner
+  const [loading, setLoading] = useState(true); // State för laddningsstatus
+  const [error, setError] = useState(""); // State för felmeddelande
+  const [editingId, setEditingId] = useState<number | null>(null); // State för att hålla koll på vilken recension som redigeras
+  
+  // State för redigeringsformuläret
   const [editRating, setEditRating] = useState("");
   const [editText, setEditText] = useState("");
 
+  // Körs när komponenten laddas, hämtar inloggade användarens recensioner
   useEffect(() => {
     async function fetchMyReviews() {
       try {
         setLoading(true);
         setError("");
 
+        // GET-request till skyddad endpoint
         const response = await fetch("http://localhost:3000/reviews/my-reviews", {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}` // skickar med token för autentisering
           }
         });
 
@@ -93,6 +97,7 @@ function AdminPage() {
           throw new Error(data.error || "Kunde inte hämta recensioner.");
         }
 
+        // Sparar recensionerna i state
         setReviews(data);
       } catch (err: any) {
         setError(err.message || "Något gick fel.");
@@ -101,30 +106,34 @@ function AdminPage() {
       }
     }
 
+    // Kör endast om token finns (användare inloggad)
     if (token) {
       fetchMyReviews();
     }
   }, [token]);
 
+  // Startar redigeringsläge för specifik recension
   const startEdit = (review: Review) => {
-    setEditingId(review.id);
-    setEditRating(String(review.rating));
-    setEditText(review.review_text);
+    setEditingId(review.id); // Sparar vilken recension som redigeras
+    setEditRating(String(review.rating)); // Förifyller betyg
+    setEditText(review.review_text); // Förifyller text
   };
 
+  // Avbryter redigering och återställer state
   const cancelEdit = () => {
     setEditingId(null);
     setEditRating("");
     setEditText("");
   };
 
+  // PUT-request
   const handleUpdate = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:3000/reviews/my-reviews/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}` // Kräver autentisering
         },
         body: JSON.stringify({
           rating: Number(editRating),
@@ -138,6 +147,7 @@ function AdminPage() {
         throw new Error(data.error || "Kunde inte uppdatera recensionen.");
       }
 
+      // Uppdatera state lokalt utan att behöva ladda om sidan
       setReviews((prev) =>
         prev.map((review) =>
           review.id === id
@@ -146,12 +156,14 @@ function AdminPage() {
         )
       );
 
+      // Avslua redigeringsläge
       cancelEdit();
     } catch (err: any) {
       setError(err.message || "Något gick fel.");
     }
   };
 
+  // DELETE-request
   const handleDelete = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:3000/reviews/my-reviews/${id}`, {
@@ -167,12 +179,14 @@ function AdminPage() {
         throw new Error(data.error || "Kunde inte radera recensionen.");
       }
 
+      // Tar bort recensionen från state direkt
       setReviews((prev) => prev.filter((review) => review.id !== id));
     } catch (err: any) {
       setError(err.message || "Något gick fel.");
     }
   };
 
+  // Om ingen token finns omredigeras användaren till login-sidan
   if (!token) {
     return <Navigate to="/login" replace />;
   }
